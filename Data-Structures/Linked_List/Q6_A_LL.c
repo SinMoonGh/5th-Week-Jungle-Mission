@@ -104,13 +104,14 @@ int moveMaxToFront(ListNode **ptrHead)
 		tmp = tmp -> next;
 		index++;
 
-		// 
+		// max 값이랑 비교해서 tmp->item 값이 max보다 크면 max 갱신
 		if(tmp->item > max){
 			max = tmp->item;
 			maxIndex = index;
 		}
 	}
 	
+	// max가 첫 노드에 있으면 그냥 종료
 	if (maxIndex == 0){
 		return;
 	}
@@ -123,6 +124,7 @@ int moveMaxToFront(ListNode **ptrHead)
 		cur = cur->next;
 	}
 
+	// 최대 값이 저장되어 있는 노드를 맨 앞으로 보내는 코드
 	pre->next = cur->next;
 	cur->next = *ptrHead;
 	*ptrHead = cur;

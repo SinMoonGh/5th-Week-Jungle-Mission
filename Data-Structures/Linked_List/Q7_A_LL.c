@@ -88,6 +88,22 @@ int main()
 void RecursiveReverse(ListNode **ptrHead)
 {
 	/* add your code here */
+	if (*ptrHead == NULL || (*ptrHead)->next == NULL){
+		return;
+	}
+
+	// rest는 노드가 한 개만 남을 때까지 오른쪽으로 탐색을 진행한다.
+	ListNode *rest = (*ptrHead)->next;
+	RecursiveReverse(&rest);
+
+	// *ptrHead는 head랑 같음. 즉, head는 자기 자신을 가리키는 것과 같다.
+	(*ptrHead)->next->next = *ptrHead;
+	// 왼쪽에서 오른쪽으로 가는 방향을 끊음.
+	(*ptrHead)->next = NULL;
+
+	// rest는 리컬젼 되면서 새로운 주소로 계속 갱신되기 때문에 오른쪽으로 이동하지만 *ptrHead는 head를 가리키고 있고
+	// head는 이동하지 않기 때문에 rest주소로 갱신해줘야 함.
+	*ptrHead = rest;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
