@@ -132,6 +132,18 @@ void createQueueFromLinkedList(LinkedList *ll, Queue *q)
 void removeOddValues(Queue *q)
 {
 	/* add your code here */
+	Queue newq;
+	newq.ll.size = 0;
+	newq.ll.head = NULL;
+
+	while(!isEmptyQueue(q)){
+		int popItem = dequeue(q);
+
+		if (popItem % 2 == 0){
+			enqueue(&newq, popItem);
+		}
+	}
+	*q = newq;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
